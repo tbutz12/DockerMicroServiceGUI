@@ -46,7 +46,7 @@ public static void main(String args[]) {
                         public void actionPerformed(ActionEvent e) {
                                 Runtime runtime = Runtime.getRuntime();
                                 try {
-                                        runtime.exec("jupyter notebook");
+                                        runtime.exec("docker --host=tcp://localhost:2376 jupyter notebook");
                                 } catch (IOException e1) {
                                         e1.printStackTrace();
                                 }
