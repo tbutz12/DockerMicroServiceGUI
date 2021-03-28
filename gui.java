@@ -5,6 +5,16 @@ import java.io.IOException;
 class gui {
 public static void main(String args[]) {
 
+        DockerClientConfig standard = DefaultDockerClientConfig.createDefaultConfigBuilder().build();
+        DockerClientConfig custom = DefaultDockerClientConfig.createDefaultConfigBuilder()
+                                    .withDockerHost("tcp://docker.somewhere.tld:2376")
+                                    .withDockerTlsVerify(true)
+                                    .withDockerCertPath("/home/user/.docker")
+                                    .withRegistryUsername(registryUser)
+                                    .withRegistryPassword(registryPass)
+                                    .withRegistryEmail(registryMail)
+                                    .withRegistryUrl(registryUrl)
+                                    .build();
         //Creating the Frame
         JFrame frame = new JFrame("Docker GUI");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

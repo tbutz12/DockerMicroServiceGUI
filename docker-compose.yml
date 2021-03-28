@@ -1,0 +1,22 @@
+version:                   "3.9"  # optional since v1.27.0
+services:
+    rstudio:
+      environment:
+        - USER=rstudio
+        - PASSWORD=qwerty
+        - MY_VAR=1
+      image:               "rocker/verse:latest"
+      ports:
+      - 8787:8787
+      volumes:
+      - ./app:/app
+      container_name:      rstudio-container
+    datascience-notebook:
+      image:               jupyter/datascience-notebook
+      volumes:
+        - /user/src/myapp
+      ports:
+      - 8888:8888
+      volumes:
+      - ./app:/app
+      container_name:      datascience-notebook-container
