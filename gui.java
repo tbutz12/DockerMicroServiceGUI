@@ -46,8 +46,7 @@ public static void main(String args[]) {
                         public void actionPerformed(ActionEvent e) {
                                 Runtime runtime = Runtime.getRuntime();
                                 try {
-                                        runtime.exec("ls");
-                                        System.out.println("HELLO");
+                                        runtime.exec("jupyter notebook");
                                 } catch (IOException e1) {
                                         e1.printStackTrace();
                                 }
