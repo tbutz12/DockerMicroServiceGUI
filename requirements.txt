@@ -1,0 +1,5 @@
+jupyterlab
+spyder-kernels
+orange3
+markdown
+GitPython

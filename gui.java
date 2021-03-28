@@ -38,6 +38,20 @@ public static void main(String args[]) {
         panel.add(tensor);
         panel.add(markdown);
 
+        jup.addActionListener(new ActionListener() {
+
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                                Runtime runtime = Runtime.getRuntime();
+                                try {
+                                        runtime.exec("ls");
+                                        System.out.println("HELLO");
+                                } catch (IOException e1) {
+                                        e1.printStackTrace();
+                                }
+                        }
+                });
+
         //Adding Components to the frame.
         frame.getContentPane().add(BorderLayout.SOUTH, panel);
         frame.setVisible(true);
