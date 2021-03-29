@@ -4,17 +4,6 @@ import java.awt.event.*;
 import java.io.IOException;
 class gui {
 public static void main(String args[]) {
-
-        DockerClientConfig standard = DefaultDockerClientConfig.createDefaultConfigBuilder().build();
-        DockerClientConfig custom = DefaultDockerClientConfig.createDefaultConfigBuilder()
-                                    .withDockerHost("tcp://docker.somewhere.tld:2376")
-                                    .withDockerTlsVerify(true)
-                                    .withDockerCertPath("/home/user/.docker")
-                                    .withRegistryUsername(registryUser)
-                                    .withRegistryPassword(registryPass)
-                                    .withRegistryEmail(registryMail)
-                                    .withRegistryUrl(registryUrl)
-                                    .build();
         //Creating the Frame
         JFrame frame = new JFrame("Docker GUI");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -50,13 +39,157 @@ public static void main(String args[]) {
         panel.add(tensor);
         panel.add(markdown);
 
+        rs.addActionListener(new ActionListener() {
+
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                                Runtime runtime = Runtime.getRuntime();
+                                try {
+                                        runtime.exec("xdg-open https://google.com");
+                                } catch (IOException e1) {
+                                        e1.printStackTrace();
+                                }
+                        }
+                });
+        spyder.addActionListener(new ActionListener() {
+
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                                Runtime runtime = Runtime.getRuntime();
+                                try {
+                                        runtime.exec("xdg-open https://google.com");
+                                } catch (IOException e1) {
+                                        e1.printStackTrace();
+                                }
+                        }
+                });
+        ibm.addActionListener(new ActionListener() {
+
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                                Runtime runtime = Runtime.getRuntime();
+                                try {
+                                        runtime.exec("xdg-open https://google.com");
+                                } catch (IOException e1) {
+                                        e1.printStackTrace();
+                                }
+                        }
+                });
+        git.addActionListener(new ActionListener() {
+
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                                Runtime runtime = Runtime.getRuntime();
+                                try {
+                                        runtime.exec("xdg-open https://google.com");
+                                } catch (IOException e1) {
+                                        e1.printStackTrace();
+                                }
+                        }
+                });
         jup.addActionListener(new ActionListener() {
 
                         @Override
                         public void actionPerformed(ActionEvent e) {
                                 Runtime runtime = Runtime.getRuntime();
                                 try {
-                                        runtime.exec("docker run -p 8888:8888 jupyter/scipy-notebook:2c80cf3537ca");
+                                        runtime.exec("xdg-open https://google.com");
+                                } catch (IOException e1) {
+                                        e1.printStackTrace();
+                                }
+                        }
+                });
+        orange.addActionListener(new ActionListener() {
+
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                                Runtime runtime = Runtime.getRuntime();
+                                try {
+                                        runtime.exec("xdg-open https://google.com");
+                                } catch (IOException e1) {
+                                        e1.printStackTrace();
+                                }
+                        }
+                });
+        vs.addActionListener(new ActionListener() {
+
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                                Runtime runtime = Runtime.getRuntime();
+                                try {
+                                        runtime.exec("xdg-open https://google.com");
+                                } catch (IOException e1) {
+                                        e1.printStackTrace();
+                                }
+                        }
+                });
+        hadoop.addActionListener(new ActionListener() {
+
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                                Runtime runtime = Runtime.getRuntime();
+                                try {
+                                        runtime.exec("xdg-open https://google.com");
+                                } catch (IOException e1) {
+                                        e1.printStackTrace();
+                                }
+                        }
+                });
+        spark.addActionListener(new ActionListener() {
+
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                                Runtime runtime = Runtime.getRuntime();
+                                try {
+                                        runtime.exec("xdg-open https://google.com");
+                                } catch (IOException e1) {
+                                        e1.printStackTrace();
+                                }
+                        }
+                });
+        tab.addActionListener(new ActionListener() {
+
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                                Runtime runtime = Runtime.getRuntime();
+                                try {
+                                        runtime.exec("xdg-open https://google.com");
+                                } catch (IOException e1) {
+                                        e1.printStackTrace();
+                                }
+                        }
+                });
+        sc.addActionListener(new ActionListener() {
+
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                                Runtime runtime = Runtime.getRuntime();
+                                try {
+                                        runtime.exec("xdg-open https://google.com");
+                                } catch (IOException e1) {
+                                        e1.printStackTrace();
+                                }
+                        }
+                });
+        tensor.addActionListener(new ActionListener() {
+
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                                Runtime runtime = Runtime.getRuntime();
+                                try {
+                                        runtime.exec("xdg-open https://google.com");
+                                } catch (IOException e1) {
+                                        e1.printStackTrace();
+                                }
+                        }
+                });
+        markdown.addActionListener(new ActionListener() {
+
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                                Runtime runtime = Runtime.getRuntime();
+                                try {
+                                        runtime.exec("xdg-open https://google.com");
                                 } catch (IOException e1) {
                                         e1.printStackTrace();
                                 }
