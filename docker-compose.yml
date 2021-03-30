@@ -17,4 +17,12 @@ services:
     image: jupyter/minimal-notebook
     ports:
       - 8888:8888
+    environment:
+    - JUPYTER_TOKEN=easy
     container_name: jupyter
+  spyder:
+    build:
+      context: ./python
+    container_name: spyder
+    ports:
+      - 8889:8889

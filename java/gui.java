@@ -114,7 +114,7 @@ class gui {
 
       @Override
       public void actionPerformed(ActionEvent e) {
-        openURL("http://host.docker.internal:8888");
+        openURL("http://host.docker.internal:8888?token=easy");
       }
 
     });
