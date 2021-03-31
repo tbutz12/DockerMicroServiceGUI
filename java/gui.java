@@ -93,14 +93,14 @@ class gui {
 
       @Override
       public void actionPerformed(ActionEvent e) {
-        openURL("http://localhost:8787");
+        openURL("http://host.docker.internal:8787");
       }
     });
     ibm.addActionListener(new ActionListener() {
 
       @Override
       public void actionPerformed(ActionEvent e) {
-        openURL("http://localhost:8787");
+        openURL("http://host.docker.internal:8787");
       }
     });
     git.addActionListener(new ActionListener() {
@@ -134,49 +134,49 @@ class gui {
 
       @Override
       public void actionPerformed(ActionEvent e) {
-        openURL("http://localhost:8881");
+        openURL("http://host.docker.internal:8881");
       }
     });
     hadoop.addActionListener(new ActionListener() {
 
       @Override
       public void actionPerformed(ActionEvent e) {
-        openURL("http://localhost:8881");
+        openURL("http://host.docker.internal:8881");
       }
     });
     spark.addActionListener(new ActionListener() {
 
       @Override
       public void actionPerformed(ActionEvent e) {
-        openURL("http://localhost:8881");
+        openURL("http://host.docker.internal:8881");
       }
     });
     tab.addActionListener(new ActionListener() {
 
       @Override
       public void actionPerformed(ActionEvent e) {
-        openURL("http://localhost:8881");
+        openURL("http://host.docker.internal:8881");
       }
     });
     sc.addActionListener(new ActionListener() {
 
       @Override
       public void actionPerformed(ActionEvent e) {
-        openURL("http://localhost:8881");
+        openURL("http://host.docker.internal:8881");
       }
     });
     tensor.addActionListener(new ActionListener() {
 
       @Override
       public void actionPerformed(ActionEvent e) {
-        openURL("http://localhost:8881");
+        openURL("http://host.docker.internal:8881");
       }
     });
     markdown.addActionListener(new ActionListener() {
 
       @Override
       public void actionPerformed(ActionEvent e) {
-        openURL("http://localhost:8881");
+        openURL("http://host.docker.internal:12345");
       }
     });
 

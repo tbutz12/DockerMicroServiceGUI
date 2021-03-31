@@ -20,9 +20,8 @@ services:
     environment:
     - JUPYTER_TOKEN=easy
     container_name: jupyter
-  spyder:
-    build:
-      context: ./python
-    container_name: spyder
+  markdown:
+    image: "v4tech/markdown-editor"
     ports:
-      - 8889:8889
+      - 12345:80
+    container_name: "markdown"
