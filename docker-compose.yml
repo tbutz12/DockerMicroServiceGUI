@@ -2,10 +2,13 @@ version: "3.9"  # optional since v1.27.0
 services:
   gui:
     build:
-            context: ./java
+      context: ./java
+      dockerfile: ./Dockerfile
     container_name: gui
     environment:
       - DISPLAY=192.168.1.162:0.0
+    ports:
+      - 8890:8890
   rstudio:
     image: "rocker/rstudio"
     ports:
@@ -18,10 +21,34 @@ services:
     ports:
       - 8888:8888
     environment:
-    - JUPYTER_TOKEN=easy
+      - JUPYTER_TOKEN=easy
     container_name: jupyter
   markdown:
     image: "v4tech/markdown-editor"
     ports:
       - 12345:80
     container_name: "markdown"
+  vs:
+    image: ghcr.io/linuxserver/code-server
+    container_name: code-server
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+    volumes:
+      - /path/to/appdata/config:/config
+    ports:
+      - 8443:8443
+    restart: unless-stopped
+    container_name: vs
+  sonarqube:
+    image: sonarqube
+    expose:
+      - 9000
+    ports:
+      - 9000:9000
+    environment:
+      - SONAR_ES_BOOTSTRAP_CHECKS_DISABLE=true
+    container_name: sonarqube
+    logging:
+      driver: none

@@ -64,7 +64,7 @@ class gui {
     JButton hadoop = new JButton("Apache Hadoop");
     JButton spark = new JButton("Apache Spark");
     JButton tab = new JButton("Tableau");
-    JButton sc = new JButton("SonarCloud");
+    JButton sq = new JButton("SonarQube");
     JButton tensor = new JButton("TensorFlow");
     JButton markdown = new JButton("Markdown");
 
@@ -78,7 +78,7 @@ class gui {
     panel.add(hadoop);
     panel.add(spark);
     panel.add(tab);
-    panel.add(sc);
+    panel.add(sq);
     panel.add(tensor);
     panel.add(markdown);
 
@@ -134,7 +134,7 @@ class gui {
 
       @Override
       public void actionPerformed(ActionEvent e) {
-        openURL("http://host.docker.internal:8881");
+        openURL("http://host.docker.internal:8443");
       }
     });
     hadoop.addActionListener(new ActionListener() {
@@ -158,11 +158,11 @@ class gui {
         openURL("http://host.docker.internal:8881");
       }
     });
-    sc.addActionListener(new ActionListener() {
+    sq.addActionListener(new ActionListener() {
 
       @Override
       public void actionPerformed(ActionEvent e) {
-        openURL("http://host.docker.internal:8881");
+        openURL("http://host.docker.internal:9000");
       }
     });
     tensor.addActionListener(new ActionListener() {
