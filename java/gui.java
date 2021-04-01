@@ -8,6 +8,8 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.net.URLConnection;
+
 class gui {
   public static void openURL(String url) {
     try {  //attempt to use Desktop library from JDK 1.6+
@@ -93,7 +95,14 @@ class gui {
 
       @Override
       public void actionPerformed(ActionEvent e) {
-        openURL("http://host.docker.internal:8787");
+        try{
+          URL myURL = new URL("http://host.docker.internal:6004");
+          URLConnection myURLConnection = myURL.openConnection();
+          myURLConnection.getContentLength();
+        }
+        catch(IOException ex){
+
+        }
       }
     });
     ibm.addActionListener(new ActionListener() {
@@ -107,7 +116,14 @@ class gui {
 
       @Override
       public void actionPerformed(ActionEvent e) {
-        openURL("http://localhost:8002");
+        try{
+          URL myURL = new URL("http://host.docker.internal:6006");
+          URLConnection myURLConnection = myURL.openConnection();
+          myURLConnection.getContentLength();
+        }
+        catch(IOException ex){
+
+        }
       }
     });
     jup.addActionListener(new ActionListener() {
@@ -122,11 +138,13 @@ class gui {
 
       @Override
       public void actionPerformed(ActionEvent e) {
-        Runtime runtime = Runtime.getRuntime();
-        try {
-          runtime.exec("orange-canvas");
-        } catch (IOException e1) {
-          e1.printStackTrace();
+        try{
+          URL myURL = new URL("http://host.docker.internal:6008");
+          URLConnection myURLConnection = myURL.openConnection();
+          myURLConnection.getContentLength();
+        }
+        catch(IOException ex){
+
         }
       }
     });
@@ -141,14 +159,14 @@ class gui {
 
       @Override
       public void actionPerformed(ActionEvent e) {
-        openURL("http://host.docker.internal:8881");
+        openURL("http://host.docker.internal:9870");
       }
     });
     spark.addActionListener(new ActionListener() {
 
       @Override
       public void actionPerformed(ActionEvent e) {
-        openURL("http://host.docker.internal:8881");
+        openURL("http://host.docker.internal:4040");
       }
     });
     tab.addActionListener(new ActionListener() {
@@ -169,7 +187,14 @@ class gui {
 
       @Override
       public void actionPerformed(ActionEvent e) {
-        openURL("http://host.docker.internal:8881");
+        try{
+          URL myURL = new URL("http://host.docker.internal:9002");
+          URLConnection myURLConnection = myURL.openConnection();
+          myURLConnection.getContentLength();
+        }
+        catch(IOException ex){
+
+        }
       }
     });
     markdown.addActionListener(new ActionListener() {

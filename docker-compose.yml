@@ -44,11 +44,90 @@ services:
   sonarqube:
     image: sonarqube
     expose:
-      - 9000
+      - 9002
     ports:
-      - 9000:9000
+      - 9002:9002
     environment:
       - SONAR_ES_BOOTSTRAP_CHECKS_DISABLE=true
     container_name: sonarqube
     logging:
       driver: none
+  tensorflow:
+    build:
+      context: ./tensorflow
+    environment:
+      - DISPLAY=192.168.1.162:0.0
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
+    ports:
+      - 9002:9002
+  spyder:
+    build:
+      context: ./spyder
+    container_name: spyder
+    environment:
+      - DISPLAY=192.168.1.162:0.0
+    ports:
+      - 6004:6004
+  orange:
+    image: "tmb132/orange"
+    container_name: orange
+    environment:
+      - DISPLAY=192.168.1.162:0.0
+    ports:
+      - 6008:6008
+  git:
+    image: "tmb132/git"
+    container_name: git
+    environment:
+      - DISPLAY=192.168.1.162:0.0
+    ports:
+      - 6006:6006
+  spark-master:
+    image: "sdesilva26/spark_master:0.0.2"
+    container_name: spark-master
+    networks:
+      - spark-net
+    ports:
+      - 8080:8080
+  spark-worker:
+    image: "sdesilva26/spark_worker:0.0.2"
+    container_name: spark-worker
+    networks:
+      - spark-net
+    ports:
+      - 8081:8081
+    environment:
+      - MEMORY=2G
+      - CORES=1
+    depends_on:
+      - spark-master
+  spark-worker2:
+    image: "sdesilva26/spark_worker:0.0.2"
+    container_name: spark-worker2
+    networks:
+      - spark-net
+    ports:
+      - 8082:8081
+    environment:
+      - MEMORY=2G
+      - CORES=1
+    depends_on:
+      - spark-worker
+  spark-submit:
+    image: "sdesilva26/spark_submit"
+    container_name: spark-submit
+    networks:
+      - spark-net
+    ports:
+      - 4040:4040
+    environment:
+      - MEMORY=2G
+      - CORES=1
+
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
+networks:
+  default:
+  spark-net:
+    driver: spark-net
