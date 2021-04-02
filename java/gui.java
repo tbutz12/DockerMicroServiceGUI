@@ -176,7 +176,7 @@ class gui {
 
       @Override
       public void actionPerformed(ActionEvent e) {
-        openURL("http://host.docker.internal:4040");
+        openURL("http://host.docker.internal:8080");
       }
     });
     tab.addActionListener(new ActionListener() {
@@ -190,7 +190,7 @@ class gui {
 
       @Override
       public void actionPerformed(ActionEvent e) {
-        openURL("http://host.docker.internal:9000");
+        openURL("http://host.docker.internal:9001");
       }
     });
     tensor.addActionListener(new ActionListener() {
@@ -198,12 +198,12 @@ class gui {
       @Override
       public void actionPerformed(ActionEvent e) {
         try{
-          URL myURL = new URL("http://host.docker.internal:8501");
+          URL myURL = new URL("http://host.docker.internal:6002");
           URLConnection myURLConnection = myURL.openConnection();
           myURLConnection.getContentLength();
         }
         catch(IOException ex){
-
+            ex.printStackTrace();
         }
       }
     });

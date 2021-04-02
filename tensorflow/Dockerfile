@@ -1,6 +1,7 @@
-FROM tensorflow/serving
-RUN apt-get update && apt-get install -y python3 python3-pip xterm
+FROM tmb132/spyder
+WORKDIR /app/tensorflow
+RUN apt-get update && apt-get install -y python3 python3-pip xterm curl
 RUN pip3 install flask
-COPY . /app/tensor
+COPY . /app/tensorflow
 ENTRYPOINT ["python3"]
-CMD ["tensor.py"]
+CMD ["tensorflow.py"]
