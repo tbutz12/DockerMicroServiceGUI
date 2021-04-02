@@ -1,6 +1,6 @@
-FROM tmb132/git
-WORKDIR /app/tensorflow
-RUN pip3 install tensorflow
-COPY . /app/tensorflow
+FROM tensorflow/serving
+RUN apt-get update && apt-get install -y python3 python3-pip xterm
+RUN pip3 install flask
+COPY . /app/tensor
 ENTRYPOINT ["python3"]
-CMD ["tensorflow.py"]
+CMD ["tensor.py"]

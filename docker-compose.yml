@@ -7,8 +7,18 @@ services:
     container_name: gui
     environment:
       - DISPLAY=192.168.1.162:0.0
+  tensorflow:
+    build:
+      context: ./tensorflow
+    image: "tensorflow/serving"
+    command: bash -c "apt-get update && apt-get install python3 python3-pip xterm"
+    command: bash -c "pip install flask"
     ports:
-      - 8890:8890
+      - '8501:8501'
+    environment:
+      - MODEL_NAME=half_plus_two
+    volumes:
+      - 'C:/Users/Tristin/Documents/test/serving/tensorflow_serving/servables/tensorflow/testdata/saved_model_half_plus_two_cpu:/models/half_plus_two'
   rstudio:
     image: "rocker/rstudio"
     ports:
@@ -44,26 +54,18 @@ services:
   sonarqube:
     image: sonarqube
     expose:
-      - 9002
+      - 9001
     ports:
-      - 9002:9002
+      - 9001:9001
     environment:
       - SONAR_ES_BOOTSTRAP_CHECKS_DISABLE=true
     container_name: sonarqube
     logging:
       driver: none
-  tensorflow:
-    build:
-      context: ./tensorflow
-    environment:
-      - DISPLAY=192.168.1.162:0.0
-    stdin_open: true # docker run -i
-    tty: true        # docker run -t
-    ports:
-      - 9002:9002
   spyder:
     build:
       context: ./spyder
+    container_name: spyder
     container_name: spyder
     environment:
       - DISPLAY=192.168.1.162:0.0
@@ -124,9 +126,73 @@ services:
     environment:
       - MEMORY=2G
       - CORES=1
-
     stdin_open: true # docker run -i
     tty: true        # docker run -t
+  sas:
+    build:
+      context: ./sas
+    container_name: sas
+    ports:
+      - 3002:3002
+    environment:
+      - DISPLAY=192.168.1.162:0.0
+
+
+  namenode:
+    image: bde2020/hadoop-namenode:2.0.0-hadoop3.2.1-java8
+    container_name: namenode
+    restart: always
+    ports:
+      - 9870:9870
+      - 9000:9000
+    volumes:
+      - hadoop_namenode:/hadoop/dfs/name
+    environment:
+      - CLUSTER_NAME=test
+    env_file:
+      - ./hadoop.env
+  datanode:
+    image: bde2020/hadoop-datanode:2.0.0-hadoop3.2.1-java8
+    container_name: datanode
+    restart: always
+    volumes:
+      - hadoop_datanode:/hadoop/dfs/data
+    environment:
+      SERVICE_PRECONDITION: "namenode:9870"
+    env_file:
+      - ./hadoop.env
+  resourcemanager:
+    image: bde2020/hadoop-resourcemanager:2.0.0-hadoop3.2.1-java8
+    container_name: resourcemanager
+    restart: always
+    environment:
+      SERVICE_PRECONDITION: "namenode:9000 namenode:9870 datanode:9864"
+    env_file:
+      - ./hadoop.env
+  nodemanager1:
+    image: bde2020/hadoop-nodemanager:2.0.0-hadoop3.2.1-java8
+    container_name: nodemanager
+    restart: always
+    environment:
+      SERVICE_PRECONDITION: "namenode:9000 namenode:9870 datanode:9864 resourcemanager:8088"
+    env_file:
+      - ./hadoop.env
+  historyserver:
+    image: bde2020/hadoop-historyserver:2.0.0-hadoop3.2.1-java8
+    container_name: historyserver
+    restart: always
+    environment:
+      SERVICE_PRECONDITION: "namenode:9000 namenode:9870 datanode:9864 resourcemanager:8088"
+    volumes:
+      - hadoop_historyserver:/hadoop/yarn/timeline
+    env_file:
+      - ./hadoop.env
+volumes:
+  hadoop_namenode:
+  hadoop_datanode:
+  hadoop_historyserver:
+
+
 networks:
   default:
   spark-net:

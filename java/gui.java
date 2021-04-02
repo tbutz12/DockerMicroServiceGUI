@@ -9,6 +9,9 @@ import java.net.URL;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.URLConnection;
+import java.io.File;
+import java.lang.ProcessBuilder.Redirect;
+import java.util.Scanner;
 
 class gui {
   public static void openURL(String url) {
@@ -109,7 +112,14 @@ class gui {
 
       @Override
       public void actionPerformed(ActionEvent e) {
-        openURL("http://host.docker.internal:8787");
+        try{
+          URL myURL = new URL("http://host.docker.internal:3002");
+          URLConnection myURLConnection = myURL.openConnection();
+          myURLConnection.getContentLength();
+        }
+        catch(IOException ex){
+
+        }
       }
     });
     git.addActionListener(new ActionListener() {
@@ -188,7 +198,7 @@ class gui {
       @Override
       public void actionPerformed(ActionEvent e) {
         try{
-          URL myURL = new URL("http://host.docker.internal:9002");
+          URL myURL = new URL("http://host.docker.internal:8501");
           URLConnection myURLConnection = myURL.openConnection();
           myURLConnection.getContentLength();
         }
