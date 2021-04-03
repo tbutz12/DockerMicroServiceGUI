@@ -209,8 +209,6 @@ class gui {
         catch(IOException ex){
 
         }
-        //http://10.0.2.15:4040
-        openURL("http://localhost:4040");
       }
     });
     tab.addActionListener(new ActionListener() {
