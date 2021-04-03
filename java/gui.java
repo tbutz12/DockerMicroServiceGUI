@@ -55,23 +55,38 @@ class gui {
     //Creating the Frame
     JFrame frame = new JFrame("Docker GUI");
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    frame.setSize(2000, 100);
-
+    frame.setSize(1000, 600);
     //Creating the panel at bottom and adding components
     JPanel panel = new JPanel(); // the panel is not visible in output
+    int x = 5;
+    int y = 5;
+    panel.setLayout(new GridLayout(x, y));
     JButton rs = new JButton("RS Studio");
+    rs.setPreferredSize(new Dimension(60, 60));
     JButton spyder = new JButton("Spyder");
+    spyder.setPreferredSize(new Dimension(60, 60));
     JButton ibm = new JButton("IBM SAS");
+    ibm.setPreferredSize(new Dimension(60, 60));
     JButton git = new JButton("Git");
+    git.setPreferredSize(new Dimension(60, 60));
     JButton jup = new JButton("Jupyter Notebook");
+    jup.setPreferredSize(new Dimension(60, 60));
     JButton orange = new JButton("Orange");
+    orange.setPreferredSize(new Dimension(60, 60));
     JButton vs = new JButton("Visual Studio Code IDE");
+    vs.setPreferredSize(new Dimension(60, 60));
     JButton hadoop = new JButton("Apache Hadoop");
+    hadoop.setPreferredSize(new Dimension(60, 60));
     JButton spark = new JButton("Apache Spark");
+    spark.setPreferredSize(new Dimension(60, 60));
     JButton tab = new JButton("Tableau");
+    tab.setPreferredSize(new Dimension(60, 60));
     JButton sq = new JButton("SonarQube");
+    sq.setPreferredSize(new Dimension(60, 60));
     JButton tensor = new JButton("TensorFlow");
+    tensor.setPreferredSize(new Dimension(60, 60));
     JButton markdown = new JButton("Markdown");
+    markdown.setPreferredSize(new Dimension(60, 60));
 
     panel.add(rs);
     panel.add(spyder);
@@ -86,7 +101,8 @@ class gui {
     panel.add(sq);
     panel.add(tensor);
     panel.add(markdown);
-
+    JPanel container = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 0));
+    container.add(panel);
     rs.addActionListener(new ActionListener() {
 
       @Override
@@ -120,6 +136,7 @@ class gui {
         catch(IOException ex){
 
         }
+        openURL("https://welcome.oda.sas.com/login");
       }
     });
     git.addActionListener(new ActionListener() {
@@ -169,21 +186,38 @@ class gui {
 
       @Override
       public void actionPerformed(ActionEvent e) {
-        openURL("http://host.docker.internal:9870");
+        try{
+          URL myURL = new URL("http://host.docker.internal:3004");
+          URLConnection myURLConnection = myURL.openConnection();
+          myURLConnection.getContentLength();
+        }
+        catch(IOException ex){
+
+        }
+        openURL("https://welcome.oda.sas.com/login");
       }
     });
     spark.addActionListener(new ActionListener() {
 
       @Override
       public void actionPerformed(ActionEvent e) {
-        openURL("http://host.docker.internal:8080");
+        try{
+          URL myURL = new URL("http://host.docker.internal:3006");
+          URLConnection myURLConnection = myURL.openConnection();
+          myURLConnection.getContentLength();
+        }
+        catch(IOException ex){
+
+        }
+        //http://10.0.2.15:4040
+        openURL("http://localhost:4040");
       }
     });
     tab.addActionListener(new ActionListener() {
 
       @Override
       public void actionPerformed(ActionEvent e) {
-        openURL("http://host.docker.internal:8881");
+        openURL("https://public.tableau.com/en-us/s/");
       }
     });
     sq.addActionListener(new ActionListener() {
@@ -203,7 +237,7 @@ class gui {
           myURLConnection.getContentLength();
         }
         catch(IOException ex){
-            ex.printStackTrace();
+          ex.printStackTrace();
         }
       }
     });
@@ -216,7 +250,7 @@ class gui {
     });
 
     //Adding Components to the frame.
-    frame.getContentPane().add(BorderLayout.SOUTH, panel);
+    frame.getContentPane().add(BorderLayout.CENTER, panel);
     frame.setVisible(true);
   }
 

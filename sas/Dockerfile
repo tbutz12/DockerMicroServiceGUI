@@ -1,6 +1,6 @@
 FROM tmb132/java
 WORKDIR /myapp/sas
-RUN apt-get install -y python3.8 python3-pip xterm openjdk-8-jre-headless
+RUN apt-get install -y python3.8 python3-pip xterm openjdk-8-jre-headless xfonts-base xfonts-100dpi xfonts-75dpi xfonts-cyrillic xfonts-encodings xfonts-scalable xfonts-utils xfonts-efont-unicode
 RUN pip3 install saspy
 RUN pip3 install flask
 COPY . /myapp/sas

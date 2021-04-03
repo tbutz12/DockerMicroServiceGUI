@@ -7,21 +7,6 @@ services:
     container_name: gui
     environment:
       - DISPLAY=192.168.1.162:0.0
-  tensorflow-server:
-    image: "asap397/my-tensorflow-server"
-    environment:
-      - MODEL_NAME=half_plus_two
-    ports:
-      - 8501:8501
-    container_name: tensorflow-server
-  tensorflowp:
-    build:
-      context: ./tensorflow
-    environment:
-      - DISPLAY=192.168.1.162:0.0
-    ports:
-      - 6002:6002
-    container_name: tensorflow_listener
   rstudio:
     image: "rocker/rstudio"
     ports:
@@ -68,7 +53,6 @@ services:
     build:
       context: ./spyder
     container_name: spyder
-    container_name: spyder
     environment:
       - DISPLAY=192.168.1.162:0.0
     ports:
@@ -87,49 +71,6 @@ services:
       - DISPLAY=192.168.1.162:0.0
     ports:
       - 6006:6006
-  spark-master:
-    image: "sdesilva26/spark_master:0.0.2"
-    container_name: spark-master
-    networks:
-      - spark-net
-    ports:
-      - 8080:8080
-  spark-worker:
-    image: "sdesilva26/spark_worker:0.0.2"
-    container_name: spark-worker
-    networks:
-      - spark-net
-    ports:
-      - 8081:8081
-    environment:
-      - MEMORY=2G
-      - CORES=1
-    depends_on:
-      - spark-master
-  spark-worker2:
-    image: "sdesilva26/spark_worker:0.0.2"
-    container_name: spark-worker2
-    networks:
-      - spark-net
-    ports:
-      - 8082:8081
-    environment:
-      - MEMORY=2G
-      - CORES=1
-    depends_on:
-      - spark-worker
-  spark-submit:
-    image: "sdesilva26/spark_submit"
-    container_name: spark-submit
-    networks:
-      - spark-net
-    ports:
-      - 4040:4040
-    environment:
-      - MEMORY=2G
-      - CORES=1
-    stdin_open: true # docker run -i
-    tty: true        # docker run -t
   sas:
     build:
       context: ./sas
@@ -139,7 +80,9 @@ services:
     environment:
       - DISPLAY=192.168.1.162:0.0
   namenode:
-    image: bde2020/hadoop-namenode:2.0.0-hadoop3.2.1-java8
+    build:
+      context: ./hadooprun
+    #image: bde2020/hadoop-namenode:2.0.0-hadoop3.2.1-java8
     container_name: namenode
     restart: always
     ports:
@@ -147,10 +90,23 @@ services:
       - 9000:9000
     volumes:
       - hadoop_namenode:/hadoop/dfs/name
+      - /input:/input
+      #- 'C:\Users\Tristin\Documents\GitHub\Docker_GUI_Microservice\namenode\myfileslocal:/jars'
     environment:
       - CLUSTER_NAME=test
     env_file:
       - ./hadoop.env
+  namenode_run:
+    build:
+      context: ./name_noderun
+    container_name: namenode_run
+    environment:
+      - DISPLAY=192.168.1.162:0.0
+    ports:
+      - 3004:3004
+    privileged: true
+    volumes:
+        - /var/run/docker.sock:/var/run/docker.sock
   datanode:
     image: bde2020/hadoop-datanode:2.0.0-hadoop3.2.1-java8
     container_name: datanode
@@ -187,13 +143,28 @@ services:
       - hadoop_historyserver:/hadoop/yarn/timeline
     env_file:
       - ./hadoop.env
+  spark:
+    build:
+      context: ./spark
+    container_name: spark
+    environment:
+      - DISPLAY=192.168.1.162:0.0
+    ports:
+      - 4040:4040
+  tensorflow:
+    build:
+      context: ./tensorflow
+    container_name: tensorflow
+    environment:
+      - DISPLAY=192.168.1.162:0.0
+    ports:
+      - 6002:6002
+    privileged: true
+    volumes:
+        - /var/run/docker.sock:/var/run/docker.sock
+
+
 volumes:
   hadoop_namenode:
   hadoop_datanode:
   hadoop_historyserver:
-
-
-networks:
-  default:
-  spark-net:
-    driver: spark-net
