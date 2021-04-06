@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def start():
-    subprocess.run(['xterm', '-hold', '-e', 'bash', '-c', 'service docker start && docker run -it tensorflow/tensorflow'])
+    subprocess.run(['xterm', '-hold', '-e', 'bash', '-c', 'service docker start && docker pull tensorflow/tensorflow && docker run -it tensorflow/tensorflow'])
     return "success"
 
 if __name__ == '__main__':

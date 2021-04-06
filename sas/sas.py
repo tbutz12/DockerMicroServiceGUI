@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def start():
-    subprocess.run(['xterm','-hold', '-e', 'bash', '-c', 'python example.py exec bash'])
+    subprocess.run(['xterm', '-hold', '-e', 'bash', '-c', 'python example.py exec bash'])
     return "success"
 
 if __name__ == '__main__':

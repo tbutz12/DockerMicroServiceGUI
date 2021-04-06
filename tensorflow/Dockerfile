@@ -10,5 +10,6 @@ RUN apt-cache policy docker-ce
 VOLUME /var/run/docker.sock
 WORKDIR /myapp
 RUN pip3 install flask
+RUN pip3 install pandas
 ENTRYPOINT ["python3"]
 CMD ["tensorflow.py"]

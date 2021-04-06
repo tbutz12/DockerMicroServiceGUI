@@ -55,10 +55,14 @@ For the Spark Microservice, there is a pre-generated big input text file. This f
 input_file = sc.textFile("/input/bigfile.txt")
 map = input_file.flatMap(lambda line: line.split(" ")).map(lambda word: (word, 1))
 counts = map.reduceByKey(lambda a, b: a + b)
-counts.saveAsTextFile("/output/")
+counts.saveAsTextFile("path/to/your/output/")
 ```
 To view the results, you can run these commands:
 ```
-quit()
-cd /output
+f = open('/path/to/your/output/part-00000')
+content = f.read()
+print(content)
+f2 = open('/path/to/your/output/part-00001')
+content2 = f2.read()
+print(content2)
 ```
