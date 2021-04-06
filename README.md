@@ -7,8 +7,8 @@ To started, set the environment variable. The file `.env` at the base of the pro
 ```
   For example: DISPLAY=127.0.0.0.1
                DISPLAY={YourDisplayEnvironment}
-  After setting the env variable, make sure you have some type of display server running, such as XLaunch or Xming (If on Windows or Mac OSX)
 ```
+**Ensure you have some type of server running to execute the graphics, such as Xming or XLaunch if you are on Windows or Mac OSX**
 
 To test that this was set correctly, you can run:
 ```
@@ -25,6 +25,7 @@ To compile and start the docker file:
 To get started in SonarQube:
 ```
   The login is as follows:
+
   Username = admin
   Password = admin
 ```
@@ -32,7 +33,8 @@ To get started in SonarQube:
 ## IBM SAS
 
 ```
-  There is a pre-configured file that is ran when starting IBM SAS. This is to show an example. You can however run your own example, by going into a python terminal by:
+  There is a pre-configured file that is ran when starting IBM SAS.
+  However run your own example, by going into a python terminal by:
   python3
   [SAS CODE]
 ```
