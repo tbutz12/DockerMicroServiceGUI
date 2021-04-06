@@ -1,4 +1,4 @@
-version: "3.9"  # optional since v1.27.0
+version: '3.9'  # optional since v1.27.0
 services:
   gui:
     build:
@@ -6,7 +6,7 @@ services:
       dockerfile: ./Dockerfile
     container_name: gui
     environment:
-      - DISPLAY=192.168.1.162:0.0
+      - DISPLAY=${DISPLAY}
     depends_on:
       - rstudio
       - spyder
@@ -65,21 +65,21 @@ services:
       context: ./spyder
     container_name: spyder
     environment:
-      - DISPLAY=192.168.1.162:0.0
+      - DISPLAY=${DISPLAY}
     ports:
       - 6004:6004
   orange:
     image: "tmb132/orange"
     container_name: orange
     environment:
-      - DISPLAY=192.168.1.162:0.0
+      - DISPLAY=${DISPLAY}
     ports:
       - 6008:6008
   git:
     image: "tmb132/git"
     container_name: git
     environment:
-      - DISPLAY=192.168.1.162:0.0
+      - DISPLAY=${DISPLAY}
     ports:
       - 6006:6006
   sas:
@@ -89,7 +89,7 @@ services:
     ports:
       - 3002:3002
     environment:
-      - DISPLAY=192.168.1.162:0.0
+      - DISPLAY=${DISPLAY}
   namenode:
     build:
       context: ./hadooprun
@@ -102,7 +102,6 @@ services:
     volumes:
       - hadoop_namenode:/hadoop/dfs/name
       - /input:/input
-      #- 'C:\Users\Tristin\Documents\GitHub\Docker_GUI_Microservice\namenode\myfileslocal:/jars'
     environment:
       - CLUSTER_NAME=test
     env_file:
@@ -112,7 +111,7 @@ services:
       context: ./name_noderun
     container_name: namenode_run
     environment:
-      - DISPLAY=192.168.1.162:0.0
+      - DISPLAY=${DISPLAY}
     ports:
       - 3004:3004
     privileged: true
@@ -155,12 +154,11 @@ services:
     env_file:
       - ./hadoop.env
   spark:
-    network_mode: host
     build:
       context: ./spark
     container_name: spark
     environment:
-      - DISPLAY=192.168.1.162:0.0
+      - DISPLAY=${DISPLAY}
       #- SPARK_LOCAL_IP="localhost"
     ports:
       - 3006:3006
@@ -169,13 +167,12 @@ services:
       context: ./tensorflow
     container_name: tensorflow
     environment:
-      - DISPLAY=192.168.1.162:0.0
+      - DISPLAY=${DISPLAY}
     ports:
       - 6002:6002
     privileged: true
     volumes:
         - /var/run/docker.sock:/var/run/docker.sock
-
 
 volumes:
   hadoop_namenode:

@@ -194,7 +194,7 @@ class gui {
         catch(IOException ex){
 
         }
-        openURL("https://welcome.oda.sas.com/login");
+        openURL("http://host.docker.internal:9870");
       }
     });
     spark.addActionListener(new ActionListener() {

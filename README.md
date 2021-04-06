@@ -1,61 +1,66 @@
-# Changes
-
-Version 2.0.0 introduces uses wait_for_it script for the cluster startup
-
-# Hadoop Docker
-
-## Supported Hadoop Versions
-See repository branches for supported hadoop versions
-
-## Quick Start
-
-To deploy an example HDFS cluster, run:
-```
-  docker-compose up
-```
-
-Run example wordcount job:
-```
-  make wordcount
-```
-
-Or deploy in swarm:
-```
-docker stack deploy -c docker-compose-v3.yml hadoop
-```
-
-`docker-compose` creates a docker network that can be found by running `docker network list`, e.g. `dockerhadoop_default`.
-
-Run `docker network inspect` on the network (e.g. `dockerhadoop_default`) to find the IP the hadoop interfaces are published on. Access these interfaces with the following URLs:
-
-* Namenode: http://<dockerhadoop_IP_address>:9870/dfshealth.html#tab-overview
-* History server: http://<dockerhadoop_IP_address>:8188/applicationhistory
-* Datanode: http://<dockerhadoop_IP_address>:9864/
-* Nodemanager: http://<dockerhadoop_IP_address>:8042/node
-* Resource manager: http://<dockerhadoop_IP_address>:8088/
+# Java GUI for Docker Microservices
 
 ## Configure Environment Variables
 
-The configuration parameters can be specified in the hadoop.env file or as environmental variables for specific services (e.g. namenode, datanode etc.):
-```
-  CORE_CONF_fs_defaultFS=hdfs://namenode:8020
+To started, set the environment variable. The file `.env` at the base of the project folder will need changed to your environment. **THIS MUST BE DONE TO SEE THE GUI**
+
 ```
 
-CORE_CONF corresponds to core-site.xml. fs_defaultFS=hdfs://namenode:8020 will be transformed into:
-```
-  <property><name>fs.defaultFS</name><value>hdfs://namenode:8020</value></property>
-```
-To define dash inside a configuration parameter, use triple underscore, such as YARN_CONF_yarn_log___aggregation___enable=true (yarn-site.xml):
-```
-  <property><name>yarn.log-aggregation-enable</name><value>true</value></property>
+  For example: DISPLAY=127.0.0.0.1
+               DISPLAY={YourDisplayEnvironment}
+  After setting the env variable, make sure you have some type of display server running, such as XLaunch or Xming (If on Windows or Mac OSX)
 ```
 
-The available configurations are:
-* /etc/hadoop/core-site.xml CORE_CONF
-* /etc/hadoop/hdfs-site.xml HDFS_CONF
-* /etc/hadoop/yarn-site.xml YARN_CONF
-* /etc/hadoop/httpfs-site.xml HTTPFS_CONF
-* /etc/hadoop/kms-site.xml KMS_CONF
-* /etc/hadoop/mapred-site.xml  MAPRED_CONF
+To test that this was set correctly, you can run:
+```
 
-If you need to extend some other configuration file, refer to base/entrypoint.sh bash script.
+  docker-compose config
+```
+## Quick Start
+
+To compile and start the docker file:
+```
+  docker-compose up -d
+```
+## SonarQube
+
+To get started in SonarQube:
+```
+  The login is as follows:
+  Username = admin
+  Password = admin
+```
+
+## IBM SAS
+
+```
+  There is a pre-configured file that is ran when starting IBM SAS. This is to show an example. You can however run your own example, by going into a python terminal by:
+  python3
+  (your code here)
+  execute
+
+  This code will be executed with a default login that I have created for testing purposes. It is ran by IBM SAS Educational Edition, and is free for use. For more information, a web page will be launched after closing the terminal where this is hosted.
+```
+
+## Apache Hadoop
+
+For the Hadoop Microservice, there is a .jar file example already pre-loaded. You can test run this by:
+```
+hadoop jar hadoop-mapreduce-examples-2.7.1-sources.jar org.apache.hadoop.examples.WordCount input output
+hdfs dfs -cat output/part-r-00000
+```
+
+# Apache Spark
+
+For the Spark Microservice, there is a pre-generated big input text file. This file can be run inside the spark terminal by:
+```
+input_file = sc.textFile("/input/bigfile.txt")
+map = input_file.flatMap(lambda line: line.split(" ")).map(lambda word: (word, 1))
+counts = map.reduceByKey(lambda a, b: a + b)
+counts.saveAsTextFile("/output/")
+```
+To view the results, you can run these commands:
+```
+quit() to exit python shell
+cd /output
+```
