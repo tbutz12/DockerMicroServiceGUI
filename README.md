@@ -44,8 +44,8 @@ This code will be executed with a default login that I have created for testing 
 
 For the Hadoop Microservice, there is a .jar file example already pre-loaded. You can test run this by:
 ```
-hadoop jar hadoop-mapreduce-examples-2.7.1-sources.jar org.apache.hadoop.examples.WordCount input output
-hdfs dfs -cat output/part-r-00000
+hadoop jar hadoop-mapreduce-examples-2.7.1-sources.jar org.apache.hadoop.examples.WordCount input path/to/your/output
+hdfs dfs -cat path/to/your/output/part-r-00000
 ```
 
 ## Apache Spark
