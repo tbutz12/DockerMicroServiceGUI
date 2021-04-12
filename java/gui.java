@@ -61,7 +61,7 @@ class gui {
     int x = 5;
     int y = 5;
     panel.setLayout(new GridLayout(x, y));
-    JButton rs = new JButton("RS Studio");
+    JButton rs = new JButton("RStudio");
     rs.setPreferredSize(new Dimension(60, 60));
     JButton spyder = new JButton("Spyder");
     spyder.setPreferredSize(new Dimension(60, 60));

@@ -1,12 +1,10 @@
 version: '3.9'  # optional since v1.27.0
 services:
   gui:
-    build:
-      context: ./java
-      dockerfile: ./Dockerfile
+    image: "tmb132/java"
     container_name: gui
-    environment:
-      - DISPLAY=${DISPLAY}
+    env_file:
+      - ./.env
     depends_on:
       - rstudio
       - spyder
@@ -64,36 +62,33 @@ services:
     build:
       context: ./spyder
     container_name: spyder
-    environment:
-      - DISPLAY=${DISPLAY}
+    env_file:
+      - ./.env
     ports:
       - 6004:6004
   orange:
     image: "tmb132/orange"
     container_name: orange
-    environment:
-      - DISPLAY=${DISPLAY}
+    env_file:
+      - ./.env
     ports:
       - 6008:6008
   git:
     image: "tmb132/git"
     container_name: git
-    environment:
-      - DISPLAY=${DISPLAY}
+    env_file:
+      - ./.env
     ports:
       - 6006:6006
   sas:
-    build:
-      context: ./sas
+    image: "tmb132/sas"
     container_name: sas
     ports:
       - 3002:3002
-    environment:
-      - DISPLAY=${DISPLAY}
+    env_file:
+      - ./.env
   namenode:
-    build:
-      context: ./hadooprun
-    #image: bde2020/hadoop-namenode:2.0.0-hadoop3.2.1-java8
+    image: "tmb132/hadooprun"
     container_name: namenode
     restart: always
     ports:
@@ -107,11 +102,10 @@ services:
     env_file:
       - ./hadoop.env
   namenode_run:
-    build:
-      context: ./name_noderun
+    image: "tmb132/namenoderun"
     container_name: namenode_run
-    environment:
-      - DISPLAY=${DISPLAY}
+    env_file:
+      - ./.env
     ports:
       - 3004:3004
     privileged: true
@@ -154,20 +148,17 @@ services:
     env_file:
       - ./hadoop.env
   spark:
-    build:
-      context: ./spark
+    image: "tmb132/spark"
     container_name: spark
-    environment:
-      - DISPLAY=${DISPLAY}
-      #- SPARK_LOCAL_IP="localhost"
+    env_file:
+      - ./.env
     ports:
       - 3006:3006
   tensorflow:
-    build:
-      context: ./tensorflow
+    image: "tmb132/tensorflow"
     container_name: tensorflow
-    environment:
-      - DISPLAY=${DISPLAY}
+    env_file:
+      - ./.env
     ports:
       - 6002:6002
     privileged: true
