@@ -20,15 +20,6 @@ To compile and start the docker file:
 ```
   docker-compose up -d
 ```
-## SonarQube
-
-To get started in SonarQube:
-```
-  The login is as follows:
-
-  Username = admin
-  Password = admin
-```
 
 ## IBM SAS
 
@@ -42,9 +33,21 @@ To get started in SonarQube:
   cars = sas.sasdata("CARS","SASHELP")
   cars.describe()
 
-  To run this example file, type 'python example.py' into the console. If you would like to run your own SAS code, this can be done by entering the python terminal and executing your code. Upon closing the terminal, you will be redirected to IBM SAS On Demand Academics website from inside of the docker container.
+  To run this example file, type 'python example.py' into the console.
+  If you would like to run your own SAS code, this can be done by entering
+  the python terminal and executing your code.
 ```
-This code will be executed with a default login that I have created for testing purposes. It is ran by IBM SAS Educational Edition, and is free for use. For more information, a web page will be launched after closing the terminal where this is hosted.
+Upon closing the terminal, you will be redirected to IBM SAS On Demand Academics website from inside of the docker container.
+
+## SonarQube
+
+To get started in SonarQube:
+```
+  The login is as follows:
+
+  Username = admin
+  Password = admin
+```
 
 ## Apache Hadoop
 
