@@ -2,15 +2,15 @@
 
 ## Configure Environment Variables
 
-To started, set the environment variable. The file `.env` at the base of the project folder will need changed to your environment. **THIS MUST BE DONE TO SEE THE GUI**
+To get started, set the environment variable. The file `.env` at the base of the project folder will need changed to your environment. **THIS MUST BE DONE TO SEE THE GUI**
 
 ```
-  For example: DISPLAY=127.0.0.0.1
+  For example: DISPLAY=127.0.0.1:0.0
                DISPLAY={YourDisplayEnvironment}
 ```
 **Ensure you have some type of server running to execute the graphics, such as Xming or XLaunch if you are on Windows or Mac OSX**
 
-To test that this was set correctly, you can run:
+To test that this was set correctly, run this command and check for a variable called DISPLAY and make sure it is set to what you set it to above:
 ```
   docker-compose config
 ```
@@ -33,17 +33,24 @@ To get started in SonarQube:
 ## IBM SAS
 
 ```
-  There is a pre-configured file that is ran when starting IBM SAS.
-  However run your own example, by going into a python terminal by:
-  python3
-  [SAS CODE]
+  There is a python file named 'example.py' inside of this container. This file will import saspy, which is used to
+  communicate with IBM SAS On Demand Academics. In this example, you will see a basic output of data from the configured test case.
+  The file will have these contents inside:
+
+  import saspy
+  sas = saspy.SASsession(cfgname='oda')
+  cars = sas.sasdata("CARS","SASHELP")
+  cars.describe()
+
+  To run this example file, type 'python example.py' into the console. If you would like to run your own SAS code, this can be done by entering the python terminal and executing your code. Upon closing the terminal, you will be redirected to IBM SAS On Demand Academics website from inside of the docker container.
 ```
 This code will be executed with a default login that I have created for testing purposes. It is ran by IBM SAS Educational Edition, and is free for use. For more information, a web page will be launched after closing the terminal where this is hosted.
 
 ## Apache Hadoop
 
-For the Hadoop Microservice, there is a .jar file example already pre-loaded. You can test run this by:
+For the Hadoop Microservice, you can run a quick test simply by typing 'hadoop version' into the terminal to see that Hadoop is set up correctly. For a more detailed test, you can run hadoop map reduce by testing an example jar file:
 ```
+
 hadoop jar hadoop-mapreduce-examples-2.7.1-sources.jar org.apache.hadoop.examples.WordCount input path/to/your/output
 hdfs dfs -cat path/to/your/output/part-r-00000
 ```
