@@ -24,9 +24,11 @@ To compile and start the docker file:
 ## IBM SAS
 
 ```
-  There is a python file named 'example.py' inside of this container. This file will import saspy, which is used to
-  communicate with IBM SAS On Demand Academics. In this example, you will see a basic output of data from the configured test case.
-  The file will have these contents inside:
+  There is a python file named 'example.py' inside of this container.
+  This file will import saspy, which is used to communicate with
+  IBM SAS On Demand Academics. In this example, you will see a basic
+  output of data from the configured test case. The file will have
+  these contents inside:
 
   import saspy
   sas = saspy.SASsession(cfgname='oda')
