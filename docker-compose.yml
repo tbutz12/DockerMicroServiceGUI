@@ -59,8 +59,7 @@ services:
     logging:
       driver: none
   spyder:
-    build:
-      context: ./spyder
+    image: "tmb132/spyder-app"
     container_name: spyder
     env_file:
       - ./.env
