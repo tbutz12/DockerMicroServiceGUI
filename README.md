@@ -10,8 +10,7 @@ ipconfig
 ```
 After obtaining your IPv4 address, you can modify the .env file to set the DISPLAY variable as so:
 ```
-DISPLAY=127.0.0.1:0.0
-DISPLAY={YourIPAddress}
+DISPLAY={YourIPAddress:0.0}
 ```
 **Ensure you have some type of server running to execute the graphics, such as Xming or XLaunch if you are on Windows or Mac OSX**
 
