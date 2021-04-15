@@ -50,6 +50,7 @@ To get started in SonarQube:
   Username = admin
   Password = admin
 ```
+After logging in, you will be prompted to change your password. This can be changed to anything you would like.
 
 ## Apache Hadoop
 
