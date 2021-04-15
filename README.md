@@ -83,5 +83,8 @@ print(content2)
 ## Exiting the application
 ```
 To exit the GUI, you can simply click the red X. However, 
-after terminating the GUI, run the command docker-compose down
+after terminating the GUI, run the command:
+
+docker-compose down
+
 to kill all possible running containers. 
