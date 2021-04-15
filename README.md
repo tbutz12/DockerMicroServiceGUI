@@ -10,7 +10,7 @@ After obtaining your IPv4 address, you can modify the .env file to set the DISPL
 ```
 DISPLAY={YourIPAddress:0.0}
 ```
-**Ensure you have some type of server running to execute the graphics, such as Xming or XLaunch if you are on Windows or Mac OSX**
+**Ensure you have some type of server running to execute the graphics, such as Xming or XLaunch if you are on Windows or Mac OSX.**
 
 To test that this was set correctly, run this command and check for a variable called DISPLAY and make sure it is set to what you set it to above:
 ```
