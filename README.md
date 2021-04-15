@@ -56,7 +56,6 @@ After logging in, you will be prompted to change your password. This can be chan
 
 For the Hadoop Microservice, you can run a quick test simply by typing 'hadoop version' into the terminal to see that Hadoop is set up correctly. For a more detailed test, you can run hadoop map reduce by testing an example jar file:
 ```
-
 hadoop jar mapreduce.jar org.apache.hadoop.examples.WordCount input path/to/your/output
 hdfs dfs -cat path/to/your/output/part-r-00000
 ```
@@ -84,6 +83,5 @@ print(content2)
 ## Exiting the application
 When exiting the application, run the command:
 ```
-
 docker-compose down
 ```
