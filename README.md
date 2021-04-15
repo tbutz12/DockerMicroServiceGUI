@@ -2,8 +2,6 @@
 
 ## Configure Environment Variables
 
-**THIS MUST BE DONE TO SEE THE GUI**
-
 To get started, set the environment variable. The file `.env` at the base of the project folder will need changed to whatever your environment variable is. For Windows, this will typically be your IPv4 Address followed by ":0.0". To find your IP Address, you can run the command:
 ```
 ipconfig
