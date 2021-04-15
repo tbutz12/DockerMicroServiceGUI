@@ -14,7 +14,7 @@ To test that this was set correctly, run this command and check for a variable c
 ```
   docker-compose config
 ```
-## Quick Start
+# Quick Start
 
 To compile and start the docker file:
 ```
