@@ -6,7 +6,7 @@ To get started, set the environment variable. The file `.env` at the base of the
 
 ```
   For example: DISPLAY=127.0.0.1:0.0
-               DISPLAY={YourDisplayEnvironment}
+               DISPLAY={YourIPAddress}
 ```
 **Ensure you have some type of server running to execute the graphics, such as Xming or XLaunch if you are on Windows or Mac OSX**
 
