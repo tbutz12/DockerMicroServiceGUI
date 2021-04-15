@@ -82,7 +82,8 @@ print(content2)
 ```
 
 ## Exiting the application
-```
 When exiting the application, run the command:
+```
 
 docker-compose down
+```
