@@ -56,9 +56,10 @@ To get started in SonarQube:
 For the Hadoop Microservice, you can run a quick test simply by typing 'hadoop version' into the terminal to see that Hadoop is set up correctly. For a more detailed test, you can run hadoop map reduce by testing an example jar file:
 ```
 
-hadoop jar hadoop-mapreduce-examples-2.7.1-sources.jar org.apache.hadoop.examples.WordCount input path/to/your/output
+hadoop jar mapreduce.jar org.apache.hadoop.examples.WordCount input path/to/your/output
 hdfs dfs -cat path/to/your/output/part-r-00000
 ```
+Upon exiting, the overview UI will be displayed to give further analysis of the job completed.
 
 ## Apache Spark
 
