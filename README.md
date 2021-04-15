@@ -3,6 +3,7 @@
 ## Configure Environment Variables
 
 To get started, set the environment variable. The file `.env` at the base of the project folder will need changed to your environment. 
+
 **THIS MUST BE DONE TO SEE THE GUI**
 
 ```
